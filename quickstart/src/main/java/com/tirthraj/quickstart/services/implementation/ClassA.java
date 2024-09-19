@@ -11,16 +11,10 @@ public class ClassA implements interface_A {
     private interface_Y inter_Y;
     private interface_Z inter_Z;
 
-    public ClassA(){
-
-        // Before Replacement
-        // inter_X = new ClassAlpha();
-
-        // After Replacement
-        inter_X = new ClassOmega();
-
-        inter_Y = new ClassBeta();
-        inter_Z = new ClassGamma();
+    public ClassA(interface_X inter_X, interface_Y inter_Y, interface_Z inter_Z){
+        this.inter_X = inter_X;
+        this.inter_Y = inter_Y;
+        this.inter_Z = inter_Z;
     }
 
 

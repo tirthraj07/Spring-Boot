@@ -11,7 +11,19 @@ In traditional programming, developers create instances of objects and manage th
 
 Suppose we have Class A which depends on class α, class β and class γ
 and we want to change the dependency of class α with class Ω.
-Traditionally, we would have to do inside Class A and change the dependency.
+
+In Dependency injection (DI) process, objects define their dependencies
+(that is, the other objects with which they work) only through
+constructor arguments,
+arguments to a factory method,
+or properties that are set on the object instance after it is constructed or returned from a factory method.
+
+
+Suppose Class A has 3 dependencies.
+To achieve IoC, what we can do is define the interface of the dependencies inside the class
+and let the Framework "inject" the actual objects into the classes.
+
+We can achieve this using Spring Beans
 
 Before Replacement:
 Inside Class A
@@ -31,13 +43,18 @@ This is class Gamma From Z
 @SpringBootApplication
 public class QuickstartApplication implements CommandLineRunner {
 
+	private interface_A inter_A;
+
+	QuickstartApplication(interface_A inter_A){
+		this.inter_A = inter_A;
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(QuickstartApplication.class, args);
 	}
 
 	@Override
 	public void run(String ...args){
-		interface_A inter_A = new ClassA();
 		inter_A.print();
 	}
 
