@@ -1,8 +1,32 @@
 package com.tirthraj.quickstart;
 
+import com.tirthraj.quickstart.services.implementation.ClassA;
+import com.tirthraj.quickstart.services.interface_A;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/*
+In traditional programming, developers create instances of objects and manage the flow of the program
+
+Suppose we have Class A which depends on class α, class β and class γ
+and we want to change the dependency of class α with class Ω.
+Traditionally, we would have to do inside Class A and change the dependency.
+
+Before Replacement:
+Inside Class A
+This is class Alpha From X
+This is class Beta From Y
+This is class Gamma From Z
+
+After Replacement:
+Inside Class A
+This is class Omega From X
+This is class Beta From Y
+This is class Gamma From Z
+
+*/
+
 
 @SpringBootApplication
 public class QuickstartApplication implements CommandLineRunner {
@@ -12,17 +36,10 @@ public class QuickstartApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String ...args) throws Exception{
-		System.out.println("Hello World from Command Line Runner");
-
-		for (String arg : args) {
-			System.out.println(arg);
-		}
-
-		// Check if specific arguments are passed
-		if (args.length > 0 && args[0].equals("--debug")) {
-			System.out.println("Debug mode is ON");
-		}
+	public void run(String ...args){
+		interface_A inter_A = new ClassA();
+		inter_A.print();
 	}
+
 
 }
