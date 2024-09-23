@@ -7,31 +7,36 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /*
-In traditional programming, developers create instances of objects and manage the flow of the program
+Instead of having a Configuration Class, we can use the @Component Annotation from Spring Boot
 
-Suppose we have Class A which depends on class α, class β and class γ
-and we want to change the dependency of class α with class Ω.
+Before we can understand the value of @Component, we first need to understand a little bit about the Spring ApplicationContext.
 
-In Dependency injection (DI) process, objects define their dependencies
-(that is, the other objects with which they work) only through
-constructor arguments,
-arguments to a factory method,
-or properties that are set on the object instance after it is constructed or returned from a factory method.
+Spring ApplicationContext is where Spring holds instances of objects that it has identified to be managed and distributed automatically. These are called beans.
+
+@Component is an annotation that allows Spring to detect our custom beans automatically.
+
+In other words, without having to write any explicit code, Spring will:
+
+Scan our application for classes annotated with @Component
+Instantiate them and inject any specified dependencies into them
+Inject them wherever needed
+
+We can use @Component across the application to mark the beans as Spring’s managed components.
+Spring will only pick up and register beans with @Component
+
+@Service and @Repository are special cases of @Component. They are technically the same, but we use them for the different purposes.
+
+We mark beans with @Service to indicate that they’re holding the business logic. Besides being used in the service layer, there isn’t any other special use for this annotation.
+@Repository’s job is to catch persistence-specific exceptions and re-throw them as one of Spring’s unified unchecked exceptions.
 
 
-Suppose Class A has 3 dependencies.
-To achieve IoC, what we can do is define the interface of the dependencies inside the class
-and let the Framework "inject" the actual objects into the classes.
-
-We can achieve this using Spring Beans
-
-Before Replacement:
+Before:
 Inside Class A
 This is class Alpha From X
 This is class Beta From Y
 This is class Gamma From Z
 
-After Replacement:
+After	:
 Inside Class A
 This is class Omega From X
 This is class Beta From Y

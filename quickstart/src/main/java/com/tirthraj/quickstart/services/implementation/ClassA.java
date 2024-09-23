@@ -4,7 +4,9 @@ import com.tirthraj.quickstart.services.interface_A;
 import com.tirthraj.quickstart.services.interface_X;
 import com.tirthraj.quickstart.services.interface_Y;
 import com.tirthraj.quickstart.services.interface_Z;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ClassA implements interface_A {
 
     private interface_X inter_X;
