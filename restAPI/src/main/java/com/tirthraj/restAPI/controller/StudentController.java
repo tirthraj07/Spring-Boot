@@ -135,6 +135,29 @@ public class StudentController {
         return ResponseEntity.ok(response);
     }
 
+    // Route that uses Query Parameters and Path Parameters
+    // Example: POST /students/search/{id}?includeContact=true
+    @PostMapping("/search/{id}")
+    public ResponseEntity<Object> searchStudent(
+            @PathVariable long id,
+            @RequestParam boolean includeContact) {
+
+        Student student = studentMap.get(id);
+        if (student == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student not found.");
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", student.getStudentID());
+        response.put("name", student.getName());
+
+        if (includeContact) {
+            response.put("contactNumber", student.getContactNumber());
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
 
 
 }
