@@ -11,10 +11,10 @@ Acts as the contract for any class (like Dog or Cat) that implements it
 Similarly, `Cat.java` also implements `Animal.java` with function `makeSound()` that return "Meow Meow!"
 
 ### AppConfig.java
+
 Here we define the **Configuration Class** which tells how beans are created and managed by Spring
 
 It indicates to Spring that the class contains bean definitions. These definitions tell Spring how to instantiate, configure, and wire objects manually.
-
 
 ```java
 @Configuration
@@ -22,9 +22,9 @@ public class AppConfig {
 
     @Bean
     public Animal getAnimal() {
-        
-        return new Cat(); // Currently returns a Cat instance. 
-        
+
+        return new Cat(); // Currently returns a Cat instance.
+
         // return new Dog(); // Can be swapped with Dog.
     }
 
@@ -36,7 +36,6 @@ The `@Bean` annotation tells Spring that the method it is applied to will return
 - `@Bean` is used inside a `@Configuration` class.
 - Each `@Bean` method returns an object that is added to the **ApplicationContext**.
 - It allows custom logic in bean creation.
-
 
 ### MyController.java
 
@@ -57,7 +56,6 @@ public class MyController {
     }
 }
 ```
-
 
 ### Constructor Based Injection
 
@@ -91,13 +89,12 @@ The main difference between `@Component` and `@Configuration` + `@Bean` lies in 
 
 **`@Component` Annotation**
 
-It marks a class as a Spring-managed bean. 
+It marks a class as a Spring-managed bean.
 The entire class is treated as a bean
 Spring automatically detects classes annotated with `@Component` during classpath scanning if the package is included in the `@ComponentScan` path.
 The class must have a no-argument constructor (or dependencies must also be Spring-managed for injection to work).
 
-
-Example 
+Example
 
 ```java
 public interface Animal {
@@ -176,7 +173,7 @@ It can be applied to:
 - Constructor
 - Setter methods
 
-Example 
+Example
 
 ```java
 @RestController
@@ -202,7 +199,7 @@ Constructor-based dependency injection explicitly injects dependencies via the c
 
 If there's only one constructor in the class, Spring automatically wires it without needing the @Autowired annotation.
 
-Example  
+Example
 
 ```java
 
@@ -226,12 +223,11 @@ public class MyController {
 
 - Dependencies are passed explicitly to the constructor
 - No need for @Autowired if the class has a single constructor.
-- Follows the principle of immutability and explicit dependency declaration. 
-Dependencies are declared final, making them immutable and ensuring they cannot be changed after the object is constructed.
-Dependencies are clearly listed in the constructor, improving readability and maintainability
+- Follows the principle of immutability and explicit dependency declaration.
+  Dependencies are declared final, making them immutable and ensuring they cannot be changed after the object is constructed.
+  Dependencies are clearly listed in the constructor, improving readability and maintainability
 - Ensures all dependencies are provided during object creation, avoiding runtime NullPointerException
-
 
 Spring's official recommendation is to prefer constructor-based injection over @Autowired field injection for mandatory dependencies. Field injection should be avoided in modern applications due to its drawbacks
 
-
+---
