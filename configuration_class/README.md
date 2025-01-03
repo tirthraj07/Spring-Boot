@@ -89,7 +89,7 @@ public class MyController {
 
 The main difference between `@Component` and `@Configuration` + `@Bean` lies in how Spring manages beans and the level of control you have over the bean creation process. Both approaches are used to define and manage Spring beans, but they serve different purposes and use cases.
 
-**`@Component` Annotation`
+**`@Component` Annotation**
 
 It marks a class as a Spring-managed bean. 
 The entire class is treated as a bean
